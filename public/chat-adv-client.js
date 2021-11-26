@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const socket = io('http://localhost:7000');
+  const socket = io();
 
   // get user name and then tell the server
   let username = prompt('What\'s your username?');  
@@ -14,7 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelector("#chatForm").addEventListener('submit', e => {
     e.preventDefault();
     const entry = document.querySelector("#entry");
-    
+    socket.emit("chat from client", entry.value);
+    entry.value = "";
   });
 
   /* User has clicked the leave button */
@@ -22,6 +23,5 @@ document.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
 	
   });  
-
 });
 
